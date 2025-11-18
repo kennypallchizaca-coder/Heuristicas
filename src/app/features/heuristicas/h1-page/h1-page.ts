@@ -1,0 +1,70 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { HeaderHeuristicaComponent } from '../../../components/header-heuristica/header-heuristica.component';
+import { EstadoSistemaMaloComponent } from '../estado-sistema-malo.component';
+import { EstadoSistemaBuenoComponent } from '../estado-sistema-bueno.component';
+import { RegistroMaloComponent } from '../registro-malo.component';
+import { RegistroBuenoComponent } from '../registro-bueno.component';
+
+@Component({
+  selector: 'app-h1-page',
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderHeuristicaComponent,
+    EstadoSistemaMaloComponent,
+    EstadoSistemaBuenoComponent,
+    RegistroMaloComponent,
+    RegistroBuenoComponent,
+  ],
+  template: `
+    <div class="max-w-6xl mx-auto py-10 px-4">
+      <app-header-heuristica
+        numeroHeuristica="1"
+        titulo="Visibilidad del Estado del Sistema"
+        concepto="El sistema debe mantener a los usuarios informados sobre lo que está ocurriendo, proporcionando retroalimentación apropiada dentro de un tiempo razonable. Los usuarios nunca deben preguntarse qué está pasando en el sistema."
+      ></app-header-heuristica>
+
+      <div class="grid gap-8 md:grid-cols-2 mb-10">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">🔴 Ejemplo Malo: Subida de Archivo</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            No hay feedback visual, no se muestra progreso ni estado de la operación.
+          </p>
+          <app-estado-sistema-malo></app-estado-sistema-malo>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">✅ Ejemplo Bueno: Subida de Archivo</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Muestra progreso, estados detallados e indicadores visuales claros.
+          </p>
+          <app-estado-sistema-bueno></app-estado-sistema-bueno>
+        </div>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">
+            🔴 Ejemplo Malo: Formulario de Registro Sin Feedback
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">
+            El usuario no sabe si el formulario se está procesando ni si hay errores.
+          </p>
+          <app-registro-malo></app-registro-malo>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">
+            ✅ Ejemplo Bueno: Formulario con Feedback Completo
+          </h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Incluye validaciones en tiempo real, barra de progreso y estados del botón.
+          </p>
+          <app-registro-bueno></app-registro-bueno>
+        </div>
+      </div>
+    </div>
+  `,
+})
+export class H1Page {}

@@ -1,0 +1,57 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-consistencia-malo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="p-6 max-w-2xl mx-auto bg-white rounded shadow">
+      <h2 class="text-xl mb-4">Panel de Control</h2>
+
+      <div class="space-y-4">
+        <button class="bg-red-500 text-white px-6 py-2 rounded-full">
+          GUARDAR PERFIL
+        </button>
+
+        <button class="border-2 border-blue-500 text-blue-500 px-4 py-3 rounded-none text-sm">
+          Guardar Configuración
+        </button>
+
+        <button
+          class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-1 rounded-lg uppercase text-xs"
+        >
+          💾 GUARDAR DATOS
+        </button>
+
+        <button class="bg-yellow-300 text-black px-3 py-4 rounded-sm normal-case">
+          Guardar cambios
+        </button>
+      </div>
+
+      <div class="mt-8 grid grid-cols-2 gap-4">
+        <div class="p-4 border">
+          <span class="text-2xl">🗑️</span>
+          <p>Eliminar Usuario</p>
+        </div>
+
+        <div class="p-4 border">
+          <span class="text-2xl">❌</span>
+          <p>Borrar Archivo</p>
+        </div>
+
+        <div class="p-4 border">
+          <span class="text-2xl">🚫</span>
+          <p>Quitar Elemento</p>
+        </div>
+
+        <div class="p-4 border">
+          <span class="text-2xl">💀</span>
+          <p>Destruir Datos</p>
+        </div>
+      </div>
+    </div>
+  `,
+})
+export class ConsistenciaMaloComponent {}
+

@@ -1,11 +1,12 @@
 // src/app/components/header-heuristica/header-heuristica.component.ts
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-header-heuristica',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header-heuristica.component.html',
   styles: []
 })

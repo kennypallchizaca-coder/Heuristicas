@@ -1,0 +1,164 @@
+<div
+  class="max-w-md mx-auto mt-8 p-6 bg-white rounded-xl shadow-2xl border border-gray-200"
+>
+  <div class="flex items-center mb-6">
+    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+      <span class="text-white font-bold">👤</span>
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800">Registro de Usuario</h2>
+  </div>
+
+  <div class="mb-6">
+    <div class="flex justify-between text-sm text-gray-600 mb-2">
+      <span>Progreso</span>
+      <span>{{ calcularProgreso() }}%</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2">
+      <div
+        class="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-500 ease-out"
+        [style.width.%]="calcularProgreso()"
+      ></div>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <div class="relative">
+        <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          (input)="validarNombre()"
+          placeholder="Nombre completo"
+          class="w-full p-3 border-2 rounded-lg transition-all duration-200"
+          [class]="getInputClass('nombre')"
+        />
+
+        <div class="absolute right-3 top-3">
+          @if (validaciones().nombre === 'valid') {
+            <span class="text-green-500 text-xl">✓</span>
+          } @else if (validaciones().nombre === 'invalid') {
+            <span class="text-red-500 text-xl">✗</span>
+          }
+        </div>
+      </div>
+
+      @if (validaciones().nombre === 'invalid') {
+        <p class="text-red-500 text-sm mt-1 flex items-center">
+          <span class="mr-1">⚠️</span>
+          El nombre debe tener al menos 3 caracteres
+        </p>
+      }
+    </div>
+
+    <div class="mb-4">
+      <div class="relative">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          (input)="validarEmail()"
+          placeholder="correo@ejemplo.com"
+          class="w-full p-3 border-2 rounded-lg transition-all duration-200"
+          [class]="getInputClass('email')"
+        />
+
+        <div class="absolute right-3 top-3">
+          @if (validaciones().email === 'valid') {
+            <span class="text-green-500 text-xl">✓</span>
+          } @else if (validaciones().email === 'invalid') {
+            <span class="text-red-500 text-xl">✗</span>
+          }
+        </div>
+      </div>
+
+      @if (validaciones().email === 'invalid') {
+        <p class="text-red-500 text-sm mt-1 flex items-center">
+          <span class="mr-1">⚠️</span>
+          Ingresa un email válido
+        </p>
+      }
+    </div>
+
+    <div class="mb-6">
+      <div class="relative">
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          (input)="validarPassword()"
+          placeholder="Contraseña segura"
+          class="w-full p-3 border-2 rounded-lg transition-all duration-200"
+          [class]="getInputClass('password')"
+        />
+
+        <div class="absolute right-3 top-3">
+          @if (validaciones().password === 'valid') {
+            <span class="text-green-500 text-xl">✓</span>
+          } @else if (validaciones().password === 'invalid') {
+            <span class="text-red-500 text-xl">✗</span>
+          }
+        </div>
+      </div>
+
+      @if (password.length > 0) {
+        <div class="mt-2">
+          <div class="flex space-x-1">
+            @for (nivel of [1, 2, 3, 4]; track nivel) {
+              <div class="h-2 flex-1 rounded" [class]="getPasswordStrengthClass(nivel)"></div>
+            }
+          </div>
+          <p class="text-sm mt-1" [class]="getPasswordTextClass()">
+            {{ getPasswordStrengthText() }}
+          </p>
+        </div>
+      }
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!formularioValido() || enviando()"
+      class="w-full p-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center"
+      [class]="getButtonClass()"
+    >
+      @if (enviando()) {
+        <svg
+          class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+        Procesando...
+      } @else if (registroExitoso()) {
+        <span class="mr-2">✅</span>
+        ¡Registrado exitosamente!
+      } @else {
+        <span class="mr-2">🚀</span>
+        Crear Cuenta
+      }
+    </button>
+  </form>
+
+  @if (mensaje()) {
+    <div class="mt-4 p-3 rounded-lg" [class]="getMensajeClass()">
+      <div class="flex items-center">
+        <span class="mr-2">{{ mensaje()?.tipo === 'success' ? '✅' : '⚠️' }}</span>
+        {{ mensaje()?.texto }}
+      </div>
+    </div>
+  }
+</div>

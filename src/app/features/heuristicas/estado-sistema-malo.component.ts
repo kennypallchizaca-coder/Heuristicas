@@ -6,21 +6,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-estado-sistema-malo',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <div class="p-6 max-w-md mx-auto bg-white rounded shadow">
-      <h2 class="text-xl mb-4">Subir Archivo</h2>
-
-      <input type="file" (change)="onFileSelect($event)" class="mb-4" />
-
-      <button (click)="uploadFile()" class="bg-blue-500 text-white px-4 py-2 rounded">
-        Subir
-      </button>
-
-      <div class="mt-4">
-        <p>Resultado aparecerá aquí...</p>
-      </div>
-    </div>
-  `,
+  templateUrl: './estado-sistema-malo.component.html',
 })
 export class EstadoSistemaMaloComponent {
   selectedFile: File | null = null;

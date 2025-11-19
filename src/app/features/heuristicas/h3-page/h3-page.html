@@ -1,0 +1,25 @@
+<div class="max-w-6xl mx-auto py-10 px-4">
+  <app-header-heuristica
+    numeroHeuristica="3"
+    titulo="Control y Libertad del Usuario"
+    concepto="Los usuarios deben sentir que controlan el sistema y contar con deshacer, rehacer y salidas de emergencia claras para revertir acciones no deseadas sin consecuencias graves."
+  ></app-header-heuristica>
+
+  <div class="grid gap-8 md:grid-cols-2">
+    <div>
+      <h3 class="text-lg font-semibold mb-2">🔴 Ejemplo Malo: Usuario Atrapado</h3>
+      <p class="text-sm text-gray-600 mb-4">
+        Un modal bloquea toda la pantalla sin opción de cancelar ni continuar trabajando.
+      </p>
+      <app-control-libertad-malo></app-control-libertad-malo>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-semibold mb-2">✅ Ejemplo Bueno: Control Total</h3>
+      <p class="text-sm text-gray-600 mb-4">
+        Incluye deshacer/rehacer, guardar en segundo plano y cancelar operaciones largas.
+      </p>
+      <app-control-libertad-bueno></app-control-libertad-bueno>
+    </div>
+  </div>
+</div>
